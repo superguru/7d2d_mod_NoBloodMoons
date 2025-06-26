@@ -1,4 +1,7 @@
-﻿namespace NoBloodMoons.Scripts.Utils
+﻿using System;
+using System.Runtime.CompilerServices;
+
+namespace NoBloodMoons.Scripts.Utils
 {
     public static class LogUtil
     {
@@ -13,24 +16,45 @@
 #endif
         }
 
-        public static void Info(string text)
+        public static void Info(string text, [CallerMemberName] string caller = "")
         {
-            Log.Out($"{Prefix}(Info) {text}");
+            LogMessage("Info", text, caller);
         }
 
-        public static void Error(string text)
+        public static void Error(string text, Exception ex = null, [CallerMemberName] string caller = "")
         {
-            Log.Error($"{Prefix}(Error) {text}");
+            var message = ex == null ? text : $"{text} Exception: {ex}";
+            LogMessage("Error", message, caller);
         }
 
-        public static void DebugLog(string text)
+        public static void DebugLog(string text, [CallerMemberName] string caller = "")
         {
-            Log.Out($"{Prefix}(Debug) {text}");
+            if (IsDebug())
+            {
+                LogMessage("Debug", text, caller);
+            }
         }
 
-        public static void Warning(string text)
+        public static void Warning(string text, [CallerMemberName] string caller = "")
         {
-            Log.Warning($"{Prefix}(Warn) {text}");
+            LogMessage("Warn", text, caller);
+        }
+
+        private static void LogMessage(string level, string text, string caller)
+        {
+            var formatted = $"{Prefix}({level}) [{caller}] {text}";
+            switch (level)
+            {
+                case "Error":
+                    Log.Error(formatted);
+                    break;
+                case "Warn":
+                    Log.Warning(formatted);
+                    break;
+                default:
+                    Log.Out(formatted);
+                    break;
+            }
         }
     }
 }

@@ -1,33 +1,26 @@
-﻿using HarmonyLib;
-using NoBloodMoons.Scripts.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection.Emit;
 
-namespace NoBloodMoons.Game.Utils {
+using HarmonyLib;
+using NoBloodMoons.Scripts.Utils;
+
+namespace NoBloodMoons.Game.Utils
+{
     [HarmonyPatch(typeof(GameUtils))]
     public class GameUtilsPatches
     {
         [HarmonyTranspiler]
-        [HarmonyPatch(typeof(GameUtils), nameof(GameUtils.IsBloodMoonTime), [typeof(ValueTuple<int, int>), typeof(int), typeof(int), typeof(int)])]
-        //GameUtils.IsBloodMoonTime
+        [HarmonyPatch(nameof(GameUtils.IsBloodMoonTime), [typeof(ValueTuple<int, int>), typeof(int), typeof(int), typeof(int)])]
 #if DEBUG
         [HarmonyDebug]
 #endif
-        private static IEnumerable<CodeInstruction> GameUtils_IsBloodMoonTime_Patch(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
+        private static IEnumerable<CodeInstruction> GameUtils_IsBloodMoonTime_Patch(IEnumerable<CodeInstruction> instructions)
         {
-            var targetMethodString = $"{typeof(GameUtils)}.{nameof(GameUtils.IsBloodMoonTime)}";
-            LogUtil.Info($"Transpiling {targetMethodString}");
-
-            var code = instructions.ToList();
-            List<CodeInstruction> newCode = [];
-            
-            newCode.Add(new CodeInstruction(OpCodes.Ldc_I4_0));
-            newCode.Add(new CodeInstruction(OpCodes.Ret));
-
-            code.InsertRange(0, newCode);
-            return code.AsEnumerable();
+            LogUtil.Info("Transpiler: IsBloodMoonTime always returns false.");
+            // Replace method body with 'return false;'
+            yield return new CodeInstruction(OpCodes.Ldc_I4_0);
+            yield return new CodeInstruction(OpCodes.Ret);
         }
     }
 }

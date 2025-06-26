@@ -1,10 +1,13 @@
-﻿using HarmonyLib;
-using HarmonyLib.Tools;
+﻿using System;
 using System.Reflection;
+
+using HarmonyLib;
+using HarmonyLib.Tools;
+using NoBloodMoons.Scripts.Utils;
 
 namespace NoBloodMoons
 {
-    public class NoBloodMoons : IModApi
+    public sealed class NoBloodMoons : IModApi
     {
         private static NoBloodMoons _context;
 
@@ -12,14 +15,34 @@ namespace NoBloodMoons
 
         public void InitMod(Mod modInstance)
         {
+            if (modInstance == null)
+            {
+                LogUtil.Error("Mod instance is null in InitMod.");
+                throw new ArgumentNullException(nameof(modInstance));
+            }
+
             _context = this;
             ModInstance = modInstance;
-      
-            var harmony = new Harmony(GetType().ToString());
+
+            LogUtil.Info("Initializing NoBloodMoons mod...");
+
+            var harmonyId = "NoBloodMoons.Mod";
+            var harmony = new Harmony(harmonyId);
+
 #if DEBUG
             HarmonyFileLog.Enabled = true;
-#endif            
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
+            LogUtil.DebugLog("Harmony file logging enabled.");
+#endif
+            try
+            {
+                harmony.PatchAll(Assembly.GetExecutingAssembly());
+                LogUtil.Info("Harmony patches applied successfully.");
+            }
+            catch (Exception ex)
+            {
+                LogUtil.Error("Failed to apply Harmony patches.", ex);
+                throw;
+            }
         }
     }
 }
