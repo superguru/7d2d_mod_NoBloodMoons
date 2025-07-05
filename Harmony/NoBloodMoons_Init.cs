@@ -2,8 +2,11 @@
 using System.Reflection;
 
 using HarmonyLib;
-using HarmonyLib.Tools;
 using NoBloodMoons.Scripts.Utils;
+
+#if DEBUG
+using HarmonyLib.Tools;
+#endif
 
 namespace NoBloodMoons
 {
@@ -35,8 +38,9 @@ namespace NoBloodMoons
 #endif
             try
             {
-                harmony.PatchAll(Assembly.GetExecutingAssembly());
-                LogUtil.Info("Harmony patches applied successfully.");
+                var executing_assembly = Assembly.GetExecutingAssembly();
+                harmony.PatchAll(executing_assembly);
+                LogUtil.Info($"Harmony patches applied successfully for {executing_assembly.FullName}");
             }
             catch (Exception ex)
             {
