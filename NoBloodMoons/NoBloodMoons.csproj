@@ -52,7 +52,7 @@
     <MakeDir Directories="$(ModPackageUploadsDir);$(ModPackageDir)" />
     <Move SourceFiles="$(TargetDir)\$(ProjectName).dll;" DestinationFolder="$(ModPackageDir)" />
     <Delete Files="$(TargetDir)\$(ProjectName).pdb;" />
-    <Copy SourceFiles="$(TargetDir)\..\README.md;$(TargetDir)\ModInfo.xml;" DestinationFolder="$(ModPackageDir)" />
+    <Copy SourceFiles="$(TargetDir)\ModInfo.xml;$(TargetDir)\..\README.md;$(TargetDir)\CHANGELOG.md;" DestinationFolder="$(ModPackageDir)" />
     <ZipDirectory SourceDirectory="$(ModPackageStagingDir)" DestinationFile="$(ModPackageUploadsDir)\$(ModPackageName).zip" Overwrite="true" />
     <Message Text="Mod packaged into directory $(ModPackageDir)" Importance="High" />
   </Target>
