@@ -26,7 +26,12 @@ rem   -
 rem   - 
 rem   - 
 rem   - 
+rem - git add .
 rem - git commit -m "Release tag x.y.z"
 rem - git tag -a x.y.z -m "Release tag x.y.z"
+rem - git push origin
+rem - git-changelog -i -o %CHANGELOG_FILE%
+rem - git add .
+rem - git commit -m "Release CHANGELOG for x.y.z"
 rem - git push origin
 rem 
