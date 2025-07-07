@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- insertion marker -->
 
+
 ## [2.0.0](https://github.com/superguru/7d2d_mod_NoBloodMoons/releases/tag/2.0.0) - 2025-07-07
 
 <small>[Compare with first commit](https://github.com/superguru/7d2d_mod_NoBloodMoons/compare/aa23027a1c414ffc92e3e49e8ce580b3dc0412bc...2.0.0)</small>
