@@ -27,7 +27,7 @@ namespace NoBloodMoons
             _context = this;
             ModInstance = modInstance;
 
-            LogUtil.Info("Initializing No Blood Moons mod...");
+            LogUtil.Info("Initializing NoBloodMoons mod...");
 
             var harmonyId = "NoBloodMoons.Mod";
             var harmony = new Harmony(harmonyId);
