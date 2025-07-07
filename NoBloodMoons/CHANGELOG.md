@@ -6,9 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
-## Unreleased
+## [2.0.0](https://github.com/superguru/7d2d_mod_NoBloodMoons/releases/tag/2.0.0) - 2025-07-07
 
-<small>[Compare with latest](https://github.com/superguru/7d2d_mod_NoBloodMoons/compare/aa23027a1c414ffc92e3e49e8ce580b3dc0412bc...HEAD)</small>
+<small>[Compare with first commit](https://github.com/superguru/7d2d_mod_NoBloodMoons/compare/aa23027a1c414ffc92e3e49e8ce580b3dc0412bc...2.0.0)</small>
 
 ### Added
 
@@ -25,5 +25,3 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 
 - Remove unused using from AssemblyInfo ([495fef5](https://github.com/superguru/7d2d_mod_NoBloodMoons/commit/495fef5becfe673dd46cb0aa57ed13b784f8f67a) by superguru).
-
-<!-- insertion marker -->
