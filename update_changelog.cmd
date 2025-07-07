@@ -12,4 +12,4 @@ set input=-i
 
 git-changelog %input% -o %CHANGELOG_FILE%
 
-@rem git-changelog --bump 2.0.0 -io NoBloodMoons\CHANGELOG.md 
+@rem git-changelog --bump 2.0.0 -io %CHANGELOG_FILE%
